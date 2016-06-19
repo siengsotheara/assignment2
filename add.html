@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>A s s i g n m e n t 2</title>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css"  href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css"  href="bootstrap/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="top-menu">
+				<ul>
+					<li><a href="add.html" class="active">Adding Item</a></li>
+					<li><a href="edit.html">Editing Item</a></li>
+					<li><a href="#">Shopping Catalog</a></li>
+				</ul>
+			</div>
+		</div>	
+	</div>
+	<div class="container">
+		<div class="row">
+			<div id="header-item">
+				<h1>Adding Item</h1>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading"></div>
+                <div class="panel-body">
+                	<form action="" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+						<div class="form-horizontal">
+						<div class="form-group">
+							<label for="text" class="col-md-4 control-label">Item Name</label>
+							<input type="text" name="item_name" id="item_name" value="">
+						</div> 
+						<div class="form-group">
+							<label for="text" class="col-md-4 control-label">Unit Price</label>
+							<input type="text" name="unit_price" id="unit_price" value="">
+							
+						</div>
+						<div class="form-group">
+							<label for="text" class="col-md-4 control-label">Quantity Available</label>
+							<input type="text" name="qty_av" id="qty_av" value="">
+						</div>	
+						<div class="form-group">
+							<label for="text" class="col-md-4 control-label">Description</label>
+							<textarea rows="4">
+								
+							</textarea>
+						</div>	
+					</div>
+					<div class="form-group">
+						<div class="form-group">
+		                    <div class="col-md-6 col-md-offset-4">
+		                        <button type="submit" class="btn btn-primary">
+		                            <i class="fa fa-btn fa-sign-in"></i>Add
+
+		                        </button>
+		                        <button type="submit" class="btn btn-primary">
+		                        	<i class="fa fa-btn fa-sign-in"></i>Reset
+		                        </button>
+		                    </div>
+		                </div>
+					</div>
+					</form>
+                </div>
+            </div>
+        </div> 
+		</div>
+	</div>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

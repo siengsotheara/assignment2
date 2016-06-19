@@ -1,0 +1,18 @@
+#header-item{
+	color: red;
+}
+.top-menu{
+	padding-top: 20px
+}
+.top-menu>ul>li{
+	background-color: none;
+	list-style: none;
+	display: inline;
+	margin-right: 20px;
+}
+.top-menu>ul>li>a:active { 
+    color: red;
+}
+a:active{
+	color: red;
+}
