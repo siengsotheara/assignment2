@@ -30,16 +30,19 @@
 	}
 	
 	//when click promotion button or add quality than list data to input
-	foreach($products->product as $product) {
+	if (isset($_POST['list'])) {
+		foreach($products->product as $product) {
 			if($product['id'] == $_POST['id']) {
-				$id = $product->price;
+				$price = $product->price;
 				$qualityAvailable = $product->qualityAvailable;
 				$startDate = $product->startDate;
 				$startTime = $product->startTime;
 				$endDate = $product->endDate;
 				$endTime = $product->endTime;
+				echo $qualityAvailable ;
 				break;
 			}
 		}
+	}
 	
 ?>

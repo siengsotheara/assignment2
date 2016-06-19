@@ -1,5 +1,6 @@
 <?php
 	$products = simplexml_load_file('products.xml');
+	$qualityAvailable ="";
 ?>
 <!DOCTYPE html>
 <html>
@@ -55,27 +56,29 @@
 								<td><?php echo $product->description; ?></td>
 								<td><?php echo $product->price; ?></td>
 								<td>
-									<span id="<?php echo 'qty'.$product->id; ?>"><?php echo $product->qualityAvailable; ?></span>
-									<input type="text" id="<?php echo 'inputQty'.$product->id; ?>" hidden/>
+									<span class="closeQuentity""><?php echo $product->qualityAvailable; ?></span>
+									<input type="text" id="11" value="<?php echo $qualityAvailable ; ?>" class="clsQTY" style="display:none"/>
 								</td>
 								<td><?php echo $product->quantitySold; ?></td>
 								<td>
-									<span id="<?php echo 'price'.$product->id; ?>"><?php echo $product->price; ?></span>
-									<input type="text" id="<?php echo 'inputPrice'.$product->id; ?>" hidden/>
+									<span class="closePromotion"><?php echo $product->price; ?></span>
+									<input type="text" id="" value="" class="openPromotion" style="display:none"/>
 								</td>
 								<td>
-									<span id="<?php echo 'start'.$product->id; ?>"><?php echo $product->startDate." ".$product->startTime; ?></span>
-									<input type="text" id="<?php echo 'startDate'.$product->id; ?>" hidden/></br>
-									<input type="text" id="<?php echo 'startTime'.$product->id; ?>" hidden/>
+									<span class="closePromotion"><?php echo $product->startDate." ".$product->startTime; ?></span>
+									<input type="text" id="<?php echo 'startDate'.$product->id; ?>" class="openPromotion" style="display:none"/></br>
+									<input type="text" id="<?php echo 'startTime'.$product->id; ?>" class="openPromotion" style="display:none"/>
 								</td>
 								<td>
-									<span id="<?php echo 'stop'.$product->id; ?>"><?php echo $product->endDate." ".$product->endTime; ?></span>
-									<input type="text" id="<?php echo 'endDate'.$product->id; ?>" hidden/></br>
-									<input type="text" id="<?php echo 'endTime'.$product->id; ?>" hidden />
+									<span class="closePromotion"><?php echo $product->endDate." ".$product->endTime; ?></span>
+									<input type="text" id="<?php echo 'endDate'.$product->id; ?>" class="openPromotion" style="display:none"/></br>
+									<input type="text" id="<?php echo 'endTime'.$product->id; ?>" class="openPromotion" style="display:none" />
 								</td>
 								<td>
-									<button onclick="promotion('<?php echo $product->id; ?>')">promotion</button>
-									<button>Add quantity</button>
+									<button class="btPromotion">promotion</button>
+									<button class="btnConfirm" class="openPromotion" style="display:none" onclick="listProduct('<?php echo $product->id; ?>')">Confirm</button>
+									<button class="btnConcel" class="openPromotion" style="display:none">Cancel</button>
+									<button class="btnAddQuantity">Add quantity</button>
 								</td>
 							</tr>
 					<?php	} ?>
@@ -87,10 +90,42 @@
 <script src="js/jquery.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script>
-	function promotion(id){
-		var idEndDate = "#endDate"+id;
-		//$('"'+idEndDate+'"').show();
-		$("#stop2").hide();
+$(document).ready(function(){
+	$(document).on('click',".btPromotion" , function(){ 
+		$(this).closest('tr').find('.openPromotion').show();
+		$(this).closest('tr').find('.closePromotion').hide();
+		$(this).closest('tr').find('.clsQTY').hide();
+	});
+	
+	$(document).on('click',".btnAddQuantity" , function(){ 
+		$(this).closest('tr').find('.openPromotion').hide();
+		$(this).closest('tr').find('.closePromotion').show();
+		$(this).closest('tr').find('.clsQTY').show();
+		$(this).closest('tr').find('.closeQuentity').hide();
+	});
+	
+});
+	function listProduct(id) {
+		alert('1');
+		// Create our XMLHttpRequest object
+		var hr = new XMLHttpRequest();
+		// Create some variables we need to send to our PHP file
+		var url = "edit.php";		
+		var vars = "id="+id+"&list=1";
+		hr.open("POST", url, true);
+		hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		// Send the data to PHP now... and wait for response to update the status div
+		hr.send(vars); // Actually execute the request
+		// Access the onreadystatechange event for the XMLHttpRequest object
+		hr.onreadystatechange = function() {
+			if(hr.readyState == 4 && hr.status == 200) {
+				var return_data = hr.responseText;
+				document.getElementById("11").innerHTML = return_data;
+				if(return_data == "success"){
+					//myClear();
+				}
+			}
+		}
 	}
 </script>
 </body>
