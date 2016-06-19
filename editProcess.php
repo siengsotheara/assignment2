@@ -1,5 +1,7 @@
 <?php
 	$products = simplexml_load_file('products.xml');
+	
+	// process update promotion
 	if (isset($_POST['promotion'])) {
 		foreach($products->product as $product) {
 			if($product['id'] == $_POST['id']) {
@@ -15,6 +17,7 @@
 		echo "success";
 	}
 	
+	//process update quality
 	if (isset($_POST['addQuality'])) {
 		foreach($products->product as $product) {
 			if($product['id'] == $_POST['id']) {
@@ -26,6 +29,7 @@
 		echo "success";
 	}
 	
+	//when click promotion button or add quality than list data to input
 	foreach($products->product as $product) {
 			if($product['id'] == $_POST['id']) {
 				$id = $product->price;
