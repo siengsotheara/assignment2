@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<products>
+<product>
+	<id>2</id>
+	<name>sdfs</name>
+	<description>sfsf</description>
+	<price>200</price>
+	<qualityAvailable>12</qualityAvailable>
+	<quantitySold>sfsf</quantitySold>
+	<cost>ffsfd</cost>
+	<startDate>18-11-2015</startDate>
+	<startTime>12:00:00</startTime>
+	<endDate>18-11-2015</endDate>
+	<endTime>12:00:00</endTime>
+
+
+</product><product><id>3</id><name>sfs</name><description>fss</description><price>fsfds</price><qualityAvailable>sfs</qualityAvailable><quantitySold>fsfsfs</quantitySold><cost>sfs</cost><startTime>18-11-2015 at 12:00:00</startTime><endTime>18-11-2015 at 12:00:00</endTime></product><product><id>4</id><name>sfsf</name><description>sfsf</description><unitPrice>sfsa</unitPrice><qualityAvailable>asfsaf</qualityAvailable><quantitySold>sfdsaaf</quantitySold><price>afs</price><startDate>18-11-2016</startDate><startTime>12:00:00</startTime><endDate>18-11-2016</endDate><endTime>12:00:00</endTime></product></products>
