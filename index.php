@@ -13,7 +13,7 @@
 		<div class="row">
 			<div class="top-menu">
 				<ul>
-					<li><a href="add.html" class="active">Adding Item</a></li>
+					<li><a href="index.php" class="active">Adding Item</a></li>
 					<li><a href="list.php">Editing Item</a></li>
 					<li><a href="#">Shopping Catalog</a></li>
 				</ul>
