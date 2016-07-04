@@ -17,7 +17,7 @@
 		<div class="row">
 			<div class="top-menu">
 				<ul>
-					<li><a href="index.php" class="active">Adding Item</a></li>
+					<li><a href="add.html" class="active">Adding Item</a></li>
 					<li><a href="list.php">Editing Item</a></li>
 					<li><a href="#">Shopping Catalog</a></li>
 				</ul>
@@ -62,7 +62,7 @@
 								<td><?php echo $product->quantitySold; ?></td>
 								<td>
 									<span class="closePromotion"><?php echo $product->price; ?></span>
-									<input type="text" id="" value="" class="openPromotion" style="display:none"/>
+									<input type="text" id="<?php echo 'price'.$product->id; ?>" value="" class="openPromotion" style="display:none"/>
 								</td>
 								<td>
 									<span class="closePromotion"><?php echo $product->startDate." ".$product->startTime; ?></span>
@@ -75,10 +75,10 @@
 									<input type="text" id="<?php echo 'endTime'.$product->id; ?>" class="openPromotion" style="display:none" />
 								</td>
 								<td>
-									<button class="btPromotion">promotion</button>
+									<button class="btPromotion" onclick="view('<?php echo $product->id; ?>');">promotion</button>
 									<button class="btnConfirm" class="openPromotion" style="display:none" onclick="listProduct('<?php echo $product->id; ?>')">Confirm</button>
 									<button class="btnConcel" class="openPromotion" style="display:none">Cancel</button>
-									<button class="btnAddQuantity">Add quantity</button>
+									<button class="" onclick="add('<?php echo $product->id; ?>');">Add quantity</button>
 								</td>
 							</tr>
 					<?php	} ?>
@@ -105,13 +105,29 @@ $(document).ready(function(){
 	});
 	
 });
-	function listProduct(id) {
-		alert('1');
+
+	function add(id) {
+		alert(id);
 		// Create our XMLHttpRequest object
 		var hr = new XMLHttpRequest();
 		// Create some variables we need to send to our PHP file
-		var url = "edit.php";		
-		var vars = "id="+id+"&list=1";
+		var url = "edit.php";
+		var myId = id;
+		var re = price.concat(myId);
+
+		var sDate = "#startDate";
+		var mySDate = sDate.concat(myId);
+
+		var sTime = "#startTime";
+		var mySTime = sTime.concat(myId);
+
+		var eDate = "#endDate";
+		var myEDate = eDate.concat(myId);
+
+		var eTime = "#endTime";
+		var myETime = eTime.concat(myId);
+
+		var vars = "promotion=1"+"&price="+re+"&sdate="+mySDate+"&stime="+mySTime+"&edate="+myEDate+"&etime"+myETime+"&id"+id;
 		hr.open("POST", url, true);
 		hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		// Send the data to PHP now... and wait for response to update the status div
@@ -120,13 +136,58 @@ $(document).ready(function(){
 		hr.onreadystatechange = function() {
 			if(hr.readyState == 4 && hr.status == 200) {
 				var return_data = hr.responseText;
-				document.getElementById("11").innerHTML = return_data;
-				if(return_data == "success"){
-					//myClear();
-				}
+				alert(return_data);
 			}
 		}
 	}
+
+
+	function view(id){
+		//alert(id);
+
+		// Create our XMLHttpRequest object
+		var hr = new XMLHttpRequest();
+		// Create some variables we need to send to our PHP file
+		var url = "edit.php";
+
+		var vars ="list=1"+"&id="+id;
+		hr.open("POST", url, true);
+		hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		// Send the data to PHP now... and wait for response to update the status div
+		hr.send(vars); // Actually execute the reques
+		// Access the onreadystatechange event for the XMLHttpRequest object
+		hr.onreadystatechange = function() {
+			if(hr.readyState == 4 && hr.status == 200) {
+				var return_data = hr.responseText;
+					var json = JSON.parse(return_data);
+					var price = "#price";
+					var myId = id;
+					var re = price.concat(myId);
+
+					var sDate = "#startDate";
+					var mySDate = sDate.concat(myId);
+
+					var sTime = "#startTime";
+					var mySTime = sTime.concat(myId);
+
+					var eDate = "#endDate";
+					var myEDate = eDate.concat(myId);
+
+					var eTime = "#endTime";
+					var myETime = eTime.concat(myId);
+
+					//alert(json['startDate']);
+					$(re).val(json['price']);
+					$(mySDate).val(json['startDate']);
+					$(mySTime).val(json['startTime']);
+					$(myEDate).val(json['endDate']);
+					$(myETime).val(json['endTime']);
+
+			}
+		}
+	}
+
+
 </script>
 </body>
 </html>

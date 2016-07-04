@@ -13,7 +13,7 @@
 		<div class="row">
 			<div class="top-menu">
 				<ul>
-					<li><a href="index.php" class="active">Adding Item</a></li>
+					<li><a href="add.html" class="active">Adding Item</a></li>
 					<li><a href="list.php">Editing Item</a></li>
 					<li><a href="#">Shopping Catalog</a></li>
 				</ul>
@@ -93,7 +93,7 @@
 		// Create our XMLHttpRequest object
 		var hr = new XMLHttpRequest();
 		// Create some variables we need to send to our PHP file
-		var url = "insertProcess.php";
+		var url = "insert.php";
 		var n = document.getElementById("item_name").value;
 		var d = document.getElementById("description").value;
 		var p = document.getElementById("unit_price").value;
